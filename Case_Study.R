@@ -4,7 +4,7 @@ date: "2023-09-09"
 output: html_document
 
 
-#installing packages
+#isntalling packages
 install.packages('tidyverse')
 install.packages('janitor')
 install.packages('lubridate')

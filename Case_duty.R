@@ -1,10 +1,4 @@
-title: "Belladata Case Study"
-author: "Lyzet Flores"
-date: "2023-09-09"
-output: html_document
-
-
-#installing packages
+#isntalling packages
 install.packages('tidyverse')
 install.packages('janitor')
 install.packages('lubridate')
@@ -27,7 +21,6 @@ summary(daily_activity_cleaned$total_steps)
 summary(daily_activity_cleaned$very_active_minutes)
 summary(daily_activity_cleaned$sedentary_hours)
 summary(daily_sleep$hours_asleep)
-
 #we can see that the average steps per dat were 8,319, which is more than the recommended6000-8000
 #the average sedentary hours were 23.21 which is less than the recommended 30 minutes
 #the average sedentary hours were 15.87 which is much more than the recommended 10 hours
@@ -58,8 +51,8 @@ weight_log$is_manual_report <- as.logical(weight_log$is_manual_report)
 str(weight_log)
 
 #I will take off weight_log fat aspect because it does not give much context and is not helpful to the analysis.
-weight_log <- weight_log %>%
-  select(-c(fat))
+weightLogInfo_merged <- weightLogInfo_merged %>%
+  select(-c(Fat))
 
 daily_activity$day_of_week <- wday(daily_activity$activity_date, label = T, abbr = T)
 daily_activity$total_active_hours = round((daily_activity$very_active_minutes + daily_activity$fairly_active_minutes + daily_activity$lightly_active_minutes)/60, digits = 2)
@@ -122,18 +115,17 @@ activity_weight <- merge(daily_activity_cleaned,weight_log, by=c('id'))
 
 ggplot(data = activity_weight)+
   aes(x =very_active_minutes, y = weight_pounds) +
-  geom_smooth(fill ='pink') +
+  geom_violin(fill ='pink') +
   labs(x='Very active minutes', y = 'Weight(lbs)', title ='Relationship between weight and physical activity')
 ggsave('relationship_weight_physical_activity.png')
 
 ggplot(data = activity_weight)+
   aes(x =total_steps, y = weight_pounds) +
-  geom_smooth(fill ='red') +
+  geom_violin(fill ='orange') +
   labs(x='Total steps', y = 'Weight(lbs)', title ='Relationship between weight and physical activity')
 ggsave('relationship_weight_and_steps.png')
 
-##This concludes my analysis of the Bellabeat data!
-##I have made a Google slide presentation that I have added to my Github page. Thank you!
+
 
 
 
