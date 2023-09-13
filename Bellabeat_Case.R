@@ -136,6 +136,6 @@ ggsave('relationship_weight_and_steps.png')
 ##I have made a Google slide presentation that I have added to my Github page. Thank you!
 
 
-
+use_git()
 
 
